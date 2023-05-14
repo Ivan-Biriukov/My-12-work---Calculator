@@ -12,6 +12,9 @@
 		57BA628E2A1043CB00375CB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BA628D2A1043CB00375CB3 /* ViewController.swift */; };
 		57BA62932A1043CD00375CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57BA62922A1043CD00375CB3 /* Assets.xcassets */; };
 		57BA62962A1043CD00375CB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57BA62942A1043CD00375CB3 /* LaunchScreen.storyboard */; };
+		57BA62A22A1046B500375CB3 /* UIColor+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BA62A12A1046B500375CB3 /* UIColor+ Extension.swift */; };
+		57BA62A62A10523B00375CB3 /* CalculatorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BA62A52A10523B00375CB3 /* CalculatorButtons.swift */; };
+		57BA62A82A10579A00375CB3 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BA62A72A10579A00375CB3 /* HorizontalStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		57BA62922A1043CD00375CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57BA62952A1043CD00375CB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57BA62972A1043CD00375CB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57BA62A12A1046B500375CB3 /* UIColor+ Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ Extension.swift"; sourceTree = "<group>"; };
+		57BA62A52A10523B00375CB3 /* CalculatorButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtons.swift; sourceTree = "<group>"; };
+		57BA62A72A10579A00375CB3 /* HorizontalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,49 @@
 		57BA62882A1043CB00375CB3 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				57BA629F2A10466D00375CB3 /* Controllers */,
+				57BA629E2A10465F00375CB3 /* View */,
+				57BA629D2A10465100375CB3 /* Model */,
 				57BA62892A1043CB00375CB3 /* AppDelegate.swift */,
 				57BA628B2A1043CB00375CB3 /* SceneDelegate.swift */,
-				57BA628D2A1043CB00375CB3 /* ViewController.swift */,
-				57BA62922A1043CD00375CB3 /* Assets.xcassets */,
-				57BA62942A1043CD00375CB3 /* LaunchScreen.storyboard */,
 				57BA62972A1043CD00375CB3 /* Info.plist */,
+				57BA62A02A10467E00375CB3 /* Supporting Files */,
 			);
 			path = Calculator;
+			sourceTree = "<group>";
+		};
+		57BA629D2A10465100375CB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57BA629E2A10465F00375CB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57BA62942A1043CD00375CB3 /* LaunchScreen.storyboard */,
+				57BA62A52A10523B00375CB3 /* CalculatorButtons.swift */,
+				57BA62A72A10579A00375CB3 /* HorizontalStackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57BA629F2A10466D00375CB3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				57BA628D2A1043CB00375CB3 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		57BA62A02A10467E00375CB3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57BA62922A1043CD00375CB3 /* Assets.xcassets */,
+				57BA62A12A1046B500375CB3 /* UIColor+ Extension.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BA62A62A10523B00375CB3 /* CalculatorButtons.swift in Sources */,
+				57BA62A22A1046B500375CB3 /* UIColor+ Extension.swift in Sources */,
 				57BA628E2A1043CB00375CB3 /* ViewController.swift in Sources */,
+				57BA62A82A10579A00375CB3 /* HorizontalStackView.swift in Sources */,
 				57BA628A2A1043CB00375CB3 /* AppDelegate.swift in Sources */,
 				57BA628C2A1043CB00375CB3 /* SceneDelegate.swift in Sources */,
 			);
