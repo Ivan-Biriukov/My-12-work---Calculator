@@ -3,9 +3,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private lazy var currentSavedFirstvalue : String = ""
-    private lazy var currentSavedSecondvalue : String = ""
-    private lazy var resaultValue: String = "fdsfdfdf"
+    private var isFinishTypingNumber : Bool = true
+    private var calculator = CalculateLogicModel()
+    
+    private var displayValue : Double {
+        get {
+            guard let number = Double(label.text!) else {
+                fatalError("Cannot convert displayLabel text to a Double")
+            }
+            return number
+        }
+        set {
+            label.text = String(newValue)
+        }
+    }
+    
     
     // MARK: - Creating UI
     
@@ -25,7 +37,7 @@ class ViewController: UIViewController {
         lb.textAlignment = .right
         lb.text = "0"
         lb.backgroundColor = .specialLightGray
-        lb.font = UIFont(name: "System Thin", size: 50)
+        lb.font = UIFont.systemFont(ofSize: 50)
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
@@ -61,42 +73,44 @@ class ViewController: UIViewController {
     private let equalButton = CalculatorButtons(withColor: .orange, withText: "=")
     
     
-    // MARK: - Buttons Methods
-    
-    @objc func buttonTaped(_ sender: UIButton){
-        print(sender.currentTitle!)
-        if let buttonValue = sender.currentTitle {
-            switch buttonValue {
-            case acButton.titleLabel?.text:
-                label.text = "0"
-            case "0", "1", "2", "3", "4", "5", "6", "8", "9", "7":
-                if label.text == "0" {
-                    label.text = ""
-                }
-                label.text! += buttonValue
-            case ".":
-                label.text! += "."
-            case "÷":
-                currentSavedFirstvalue = label.text!
-                label.text = ""
-            case "=":
-                currentSavedSecondvalue = label.text!
-                label.text! = resaultValue
-            default:
-                print("Error")
-            }
-        }
-
-       // label.text! += sender.currentTitle!
-    }
-    
     // MARK: - LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-        addtargets()
+        addNumButtonsTargets()
+        addOperationButtonsTargets()
+    }
+    
+    // MARK: - Buttons Methods
+    
+    @objc func numButtonTaped(_ sender: UIButton){
+        if let numValue = sender.currentTitle {
+            if isFinishTypingNumber {
+                label.text = numValue
+                isFinishTypingNumber = !isFinishTypingNumber
+            } else {
+                if numValue == "."{
+                    let isInt = floor(displayValue) == displayValue
+                    
+                    if !isInt {
+                        return
+                    }
+                }
+                label.text! += numValue
+            }
+        }
+    }
+    
+    @objc func operationButtonTaped (_ sender : UIButton) {
+        isFinishTypingNumber = !isFinishTypingNumber
+        calculator.setNumber(displayValue)
+        if let calcMethod = sender.currentTitle {
+            if  let result = calculator.calculate(symbol: calcMethod) {
+                displayValue = result
+            }
+        }
     }
 
     
@@ -148,11 +162,19 @@ class ViewController: UIViewController {
     
     // MARK: - addTargetToButtons
     
-    private func addtargets() {
-        let buttonsArray = [acButton, plusminusButton, percentButton, devideButton, sevenButton, eightButton, nineButton, multiplyButton, fourButton, fiveButton, sixButton, minusButton, oneButton, twoButton, threeButton, plusButton, zeroButton, commaButton, equalButton]
+    private func addNumButtonsTargets() {
+        let buttonsArray = [ sevenButton, eightButton, nineButton, fourButton, fiveButton, sixButton, oneButton, twoButton, threeButton, zeroButton, commaButton]
         for button in buttonsArray {
-            button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
+            button.addTarget(self, action: #selector(numButtonTaped), for: .touchUpInside)
         }
+    }
+    
+    private func addOperationButtonsTargets() {
+        let buttonsArray = [acButton, plusminusButton, percentButton, devideButton, multiplyButton,   minusButton, plusButton, equalButton]
+        for button in buttonsArray {
+            button.addTarget(self, action: #selector(operationButtonTaped), for: .touchUpInside)
+        }
+        
     }
 }
 
